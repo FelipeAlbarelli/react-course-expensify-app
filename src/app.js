@@ -4,16 +4,13 @@ import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import 'react-dates/lib/css/_datepicker.css'
 import {Provider} from 'react-redux';
+import { loadExpenses} from './actions/expenses';
 
-import {addExpense , loadExpenses} from './actions/expenses';
-import {setTextFilter , sortByAmount} from './actions/filters'
-import getVisibleExpenses from './selectors/expenses'
+const store = configureStore();
 
-const store = configureStore() ;
+// !!!!!!!!!!!!!1
 
 store.dispatch(loadExpenses(JSON.parse(localStorage.expenses ? localStorage.expenses : '[]')));
-
-// console.log(getVisibleExpenses( store.getState().expenses , store.getState().filters ));
 
 const jsx = (
     <Provider store={store} >
